@@ -1,0 +1,15 @@
+[package]
+name = "magic-ride-clap"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "CLAP wrapper for the reverse-engineered magic.RIDE"
+
+[lib]
+name = "magic_ride_clap"
+crate-type = ["cdylib"]
+
+[dependencies]
+magic-ride-core = { path = "../core" }
+clap-sys = "0.5"

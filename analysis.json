@@ -1,0 +1,207 @@
+{
+  "schema": "rea-reverse-engineering-analysis/1.0",
+  "target": {
+    "name": "magic.RIDE 1.3.1 Windows Setup.exe",
+    "product": "magic.RIDE",
+    "vendor": "MBM Audio",
+    "version": "1.3.1",
+    "sha256": "10e855e9cfb509cab93dbd780cec716fee0767ef99521be9ca9cf8e7db59bfe3",
+    "size_bytes": 9340728,
+    "format": "pe32-x86-installer",
+    "installer_format": "Inno Setup 6.7.0 Unicode"
+  },
+  "evidence": [
+    {
+      "id": "ev_4e6fe5fbe3d2fe179b1c556bd093c5f9424515945525751e88e0cf2d3552e178",
+      "provider": "rea-artifact-graph",
+      "operation": "inspect_artifact",
+      "claim": "Installer root artifact identity and SHA-256"
+    },
+    {
+      "id": "ev_d9f8a8e032e70010599b06b5351c7c08bb2a7748c15cd0057d8d4a878f73178f",
+      "provider": "rea-artifact-graph",
+      "operation": "inventory_artifact",
+      "claim": "No child container entries detected by generic artifact inventory"
+    },
+    {
+      "id": "ev_06b92bef4528bf1d81c8c6dbb5eb43009e93c89306093c1ae1be309059990af6",
+      "provider": "rea-pe-resources",
+      "operation": "inspect_pe_resources",
+      "claim": "VST3 DLL has only icon/cursor PE resources; no embedded XML resources"
+    }
+  ],
+  "extraction": {
+    "method": "Source-patched innoextract with Inno Setup 6.7 record layouts (revision-2 offset table, 64-bit block header, new header/file/language/data-entry fields)",
+    "loader_offset_table": {
+      "resource_id": 11111,
+      "file_offset": 2146340,
+      "revision": 2,
+      "setup_0_offset": 8128498,
+      "payload_offset": 893952,
+      "compressed_exe_offset": 8149515
+    },
+    "integrity": "all extracted SHA-256 digests matched embedded SHA256Sum values",
+    "files": [
+      {
+        "path": "commonpf64/Common Files/VST3/magic.RIDE.vst3/Contents/Resources/moduleinfo.json",
+        "size": 1082,
+        "sha256": "5d6e1ae46a6b551f87a4e442faa7256123ae8bb006f0b57405574c11f55117ee"
+      },
+      {
+        "path": "commonpf64/Common Files/VST3/magic.RIDE.vst3/Contents/x86_64-win/magic.RIDE.vst3",
+        "size": 8425472,
+        "sha256": "9548fec114d2f60cce399e9abfc4ae69f83a18997736059e53d2cce71bd6d135",
+        "format": "PE32+ x86-64 DLL"
+      },
+      {
+        "path": "commonpf64/Common Files/Avid/Audio/Plug-Ins/magic.RIDE.aaxplugin/desktop.ini",
+        "size": 80,
+        "sha256": "34b7fb2daafdf887abf4397c52a6c69ce5c233466ac8f3100708bcf6f4984a82"
+      },
+      {
+        "path": "commonpf64/Common Files/Avid/Audio/Plug-Ins/magic.RIDE.aaxplugin/Plugin.ico",
+        "size": 363247,
+        "sha256": "6cd99e8cc4d7c8bdc137e2b908210100319181165820649dacc0fae4974150b6"
+      },
+      {
+        "path": "commonpf64/Common Files/Avid/Audio/Plug-Ins/magic.RIDE.aaxplugin/Contents/x64/magic.RIDE.aaxplugin",
+        "size": 8397120,
+        "sha256": "bf5c9ef282ac126d02d62520bb912fdcf158a9f42fbad5322438b873fc831e7a",
+        "format": "PE32+ x86-64 DLL"
+      }
+    ]
+  },
+  "plugin": {
+    "framework": "JUCE (inferred)",
+    "formats_shipped": ["VST3", "AAX"],
+    "format_targeted": ["VST3", "CLAP"],
+    "architecture_shipped": "x86-64 Windows",
+    "macos_binary_present": false,
+    "sidechain": {
+      "observed_keys": ["sidechainEnabled", "sidechainFollow", "sidechainAmount", "Sidechain"],
+      "confidence": "observed"
+    }
+  },
+  "parameters": {
+    "ids": [
+      "targetLevel", "range", "speed", "cutRange", "boostRange", "attack",
+      "gainOutput", "hold", "release", "transientPreservation",
+      "breathReduction", "smartSilence", "naturalMode", "noiseFloor", "outputTrim"
+    ],
+    "state_keys": [
+      "attackMs", "releaseMs", "holdMs", "useLufs", "automationMode",
+      "lookAheadMode", "rangeLocked", "vocalFocusEnabled", "sidechainEnabled",
+      "sidechainFollow", "sidechainAmount", "presetIndex", "scrollSpeed",
+      "uiScalePercent", "windowSizeIndex", "VocalRiderState"
+    ],
+    "labels": [
+      "Target Level", "Range (legacy)", "Speed", "Cut Range", "Boost Range",
+      "Attack", "Release", "Hold", "Breath Reduction", "Transient Preservation",
+      "Natural Mode", "Smart Silence", "Output Trim", "Noise Floor", "Gain Output"
+    ],
+    "ranges": [
+      {"id": "targetLevel", "min": -40.0, "max": 0.0, "default": -18.0, "unit": "dB", "confidence": "inferred"},
+      {"id": "range", "min": 0.0, "max": 100.0, "default": 50.0, "unit": "dB", "confidence": "inferred"},
+      {"id": "speed", "min": 0.0, "max": 100.0, "default": 6.0, "unit": "%", "confidence": "inferred"},
+      {"id": "cutRange", "min": 0.0, "max": 200.0, "default": 100.0, "unit": "dB", "confidence": "inferred"},
+      {"id": "boostRange", "min": 0.0, "max": 500.0, "default": 400.0, "unit": "dB", "confidence": "inferred"},
+      {"id": "attack", "min": 0.1, "max": 50.0, "default": 2.0, "unit": "ms", "confidence": "inferred"},
+      {"id": "release", "min": 0.1, "max": 50.0, "default": 10.0, "unit": "ms", "confidence": "inferred"},
+      {"id": "hold", "min": 0.0, "max": 200.0, "default": 50.0, "unit": "ms", "confidence": "inferred"},
+      {"id": "breathReduction", "min": 0.0, "max": 1.0, "default": 1.0, "unit": "", "confidence": "inferred"},
+      {"id": "transientPreservation", "min": 0.0, "max": 100.0, "default": 0.0, "unit": "%", "confidence": "inferred"},
+      {"id": "naturalMode", "min": 0.0, "max": 1.0, "default": 1.0, "unit": "bool", "confidence": "inferred"},
+      {"id": "smartSilence", "min": 0.0, "max": 1.0, "default": 0.0, "unit": "bool", "confidence": "inferred"},
+      {"id": "outputTrim", "min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB", "confidence": "inferred"},
+      {"id": "noiseFloor", "min": -100.0, "max": 0.0, "default": -100.0, "unit": "dB", "confidence": "inferred"},
+      {"id": "gainOutput", "min": -1.0, "max": 12.0, "default": -1.0, "unit": "dB", "confidence": "inferred"}
+    ],
+    "evidence": "E-PARAM-IDS, E-LABELS, E-PARAM-CREATION"
+  },
+  "presets": {
+    "factory_count": 48,
+    "source_function_rva": "0x1d4930-0x1d653a",
+    "record_size": 80,
+    "categories": ["Lead Vocals", "Backgrounds", "Speaking", "Rescue", "Mattie's Favorites"],
+    "field_layout": {
+      "0x10": {"name": "targetLevel", "type": "f32", "confidence": "observed"},
+      "0x14": {"name": "range", "type": "f32", "confidence": "observed"},
+      "0x18": {"name": "speed", "type": "f32", "confidence": "observed"},
+      "0x1c": {"name": "cutRange", "type": "f32", "confidence": "inferred"},
+      "0x20": {"name": "boostRange", "type": "f32", "confidence": "inferred"},
+      "0x28": {"name": "naturalMode/smartSilence flags", "type": "u16", "confidence": "inferred"},
+      "0x2a": {"name": "useLufs", "type": "u8", "confidence": "inferred"},
+      "0x2c": {"name": "attack", "type": "f32", "confidence": "observed"},
+      "0x30": {"name": "hold", "type": "f32", "confidence": "observed"},
+      "0x34": {"name": "noiseFloor", "type": "f32", "confidence": "observed"},
+      "0x38": {"name": "transientPreservation/outputTrim", "type": "u64", "confidence": "inferred"},
+      "0x40": {"name": "release", "type": "f32", "confidence": "inferred"},
+      "0x44": {"name": "gainOutput", "type": "f32", "confidence": "inferred"},
+      "0x48": {"name": "breathReduction", "type": "u8", "confidence": "inferred"}
+    },
+    "user_preset_format": {
+      "extension": ".xml",
+      "folder": "User Presets",
+      "keys": [
+        "name", "UserPreset", "speed", "targetLevel", "attackMs", "range",
+        "holdMs", "releaseMs", "smartSilence", "naturalMode", "breathReduction",
+        "useLufs", "noiseFloor", "transientPreservation", "outputTrim",
+        "lookAheadMode", "boostRange", "rangeLocked", "cutRange"
+      ],
+      "confidence": "observed"
+    },
+    "rust_source": "magic-ride/crates/core/src/presets.rs"
+  },
+  "dsp": {
+    "observed_behaviour": [
+      "gain follows a target level",
+      "boost and cut are bounded independently",
+      "separate attack, hold and release times",
+      "breath reduction and noise-floor gating",
+      "transient preservation",
+      "natural mode and smart silence",
+      "optional LUFS target"
+    ],
+    "reconstruction": "stereo RMS/peak detector -> target error -> asymmetric clamp -> hold/attack/release ballistics -> output trim",
+    "bit_exact": false,
+    "confidence": "inferred",
+    "unknowns": [
+      "exact detector topology",
+      "sidechain routing and amount",
+      "look-ahead buffer length",
+      "LUFS integration window and gating",
+      "transient preservation filter",
+      "meter scaling"
+    ]
+  },
+  "reconstruction": {
+    "language": "Rust",
+    "workspace": "magic-ride/",
+    "crates": {
+      "core": "parameters, 48 factory presets, user-preset XML, DSP",
+      "clap": "CLAP cdylib using clap-sys 0.5",
+      "vst3": "VST3 cdylib using vst3 0.3 COM bindings",
+      "app": "egui + cpal standalone macOS test host (live audio, meters, 48 presets)"
+    },
+    "build": "cargo build --release --workspace && ./bundle.sh && ./bundle-app.sh",
+    "outputs": [
+      "bundles/magic.RIDE.vst3",
+      "bundles/magic.RIDE.clap",
+      "magic.RIDE Standalone.app"
+    ],
+    "standalone": {
+      "bundle": "magic.RIDE Standalone.app",
+      "audio": "default input -> reconstructed DSP -> default output",
+      "gui": "egui: 15 parameters, 48 factory presets, input/output/gain meters",
+      "permissions": "NSMicrophoneUsageDescription; requires equal input/output sample rates"
+    },
+    "tests": "cargo test --workspace (3 tests passing); standalone binary launched and exited cleanly after 3s smoke test"
+  },
+  "limitations": [
+    "No original source code available; DSP is a behavioural reconstruction, not a bit-exact clone.",
+    "No Windows host or macOS build of the original available for A/B audio comparison.",
+    "Ghidra was not configured, so decompilation of the audio callback was not performed; x86-64 disassembly was done with capstone.",
+    "Packed flag fields in the preset struct are inferred from value ranges, not observed through a decompiler.",
+    "No custom GUI, sidechain bus, AAX target or preset sync UI in the reconstruction."
+  ]
+}

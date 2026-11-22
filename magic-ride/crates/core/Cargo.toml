@@ -1,0 +1,12 @@
+[package]
+name = "magic-ride-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Parameter model, preset loader and gain-riding DSP for magic.RIDE"
+
+[lib]
+crate-type = ["lib", "staticlib"]
+
+[dependencies]

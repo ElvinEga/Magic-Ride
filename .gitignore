@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Rust / Cargo
+target/
+**/target/
+Cargo.lock.bak
+
+# Generated bundles and build output
+magic-ride/bundles/
+magic-ride/*.app/
+
+# Extracted installer payload (regenerable from the .exe)
+extracted/
+*.exe
+
+# Scratch / analysis intermediates
+*.log
+*.tmp
+header.bin
+presets_raw.json
+*.dSYM/
