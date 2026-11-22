@@ -1,0 +1,15 @@
+[package]
+name = "magic-ride"
+version = "1.3.1"
+edition = "2021"
+authors = ["MBM Audio (RE reconstruction)"]
+description = "VST3 and CLAP plugin with egui GUI for magic.RIDE"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+magic-ride-core = { path = "../core" }
+nice-plug = { version = "0.4", features = ["standalone"] }
+nice-plug-egui = "0.6"
+egui = { version = "0.37", features = ["default_fonts"] }

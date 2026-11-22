@@ -1,0 +1,12 @@
+[package]
+name = "magic-ride-xtask"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "xtask"
+path = "src/main.rs"
+
+[dependencies]
+nice-plug-xtask = "0.1"

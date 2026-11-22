@@ -5,6 +5,8 @@ members = [
     "crates/clap",
     "crates/vst3",
     "crates/app",
+    "crates/plugin",
+    "xtask",
 ]
 
 [workspace.package]
