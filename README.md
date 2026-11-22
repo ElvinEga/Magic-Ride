@@ -2,6 +2,8 @@
 
 Native macOS **VST3**, **CLAP**, and **Standalone App** reconstruction of MBM Audio's **magic.RIDE 1.3.1** precision vocal leveling plugin, written in pure Rust.
 
+![magic.RIDE UI Preview](assets/screenshot.jpg)
+
 Features a vector dark interface rendered with `egui`, real-time scrolling waveform visualization, custom rotary controls, peak/gain meters, A/B snapshot compare, undo/redo parameter history, and all 48 factory presets recovered from the original Windows binary.
 
 ---
